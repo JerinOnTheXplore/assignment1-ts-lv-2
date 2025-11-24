@@ -147,4 +147,3 @@ function calculateTotalPrice(products: Product[]): number {
     .reduce((total, current) => total + current, 0);
 }
 
-
