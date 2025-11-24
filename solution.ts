@@ -13,6 +13,7 @@ function formatValue(value: string | number | boolean): string | number | boolea
 
 
 
+
 function getLength(value: string | any[]) : number {
     if (typeof value === "string"){
         return value.length;
@@ -21,6 +22,7 @@ function getLength(value: string | any[]) : number {
     }
     return 0;
 }
+
 
 
 
@@ -40,6 +42,7 @@ class Person {
 
 
 
+
 type Item = {
     title: string;
     rating: number;
@@ -48,6 +51,7 @@ type Item = {
 function filterByRating (items: Item[]): Item[] {
     return items.filter((item)=> item.rating >= 4);
 }
+
 
 
 
@@ -64,6 +68,7 @@ function filterActiveUsers(users: User[]): User[]{
 
 
 
+
 interface Book {
     title:string;
     author: string;
@@ -77,6 +82,7 @@ function printBookDetails(book:Book): void {
         `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${availability}`
     );
 }
+
 
 
 
@@ -117,6 +123,28 @@ function getUniqueValues(
 
 
 
+type Product = {
+    name:string;
+    price: number;
+    quantity: number;
+    discount?: number;
+};
 
+function calculateTotalPrice(products: Product[]): number {
+    if (products.length === 0) return 0;
+
+    return products
+    .map((product) => {
+      const basePrice = product.price *product.quantity;
+
+      if (product.discount!==undefined) {
+        const discountAmount = basePrice* (product.discount/100);
+        return basePrice-discountAmount;
+      }
+
+      return basePrice;
+    })
+    .reduce((total, current) => total + current, 0);
+}
 
 
